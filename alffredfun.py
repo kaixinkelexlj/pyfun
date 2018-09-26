@@ -112,8 +112,9 @@ def main():
     result.append(Item({"uid": uid("fun")}, title=u'%s' % args("1")))
     write(xml(result))
 
-
+'''
 if __name__ == '__main__':
     main()
-
-main()
+'''
+# main()
+print uid(100)

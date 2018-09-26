@@ -51,7 +51,7 @@ def processline(line, map):
 	map[mobile].add(pname)
 	
 def test():
-	filepath = '娱乐宝7期.csv'.encode('gbk')
+	filepath = 'test.csv'.encode('gbk')
 	print filepath
 	f = open(filepath, 'r')
 	resultmap = {}
