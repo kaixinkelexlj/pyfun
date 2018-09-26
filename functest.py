@@ -223,15 +223,16 @@ def testString():
 
 
 def testSimple():
-    a = "com.1.2.3"
-    print "\\".join(a.split("."))
-    print re.sub('\\\\', '/', r'com\\xlj\\xx')
-    print "com".find("xx")
+    print os.getcwd()
+    print os.path.abspath("../")
 
 
 def main():
     testSimple()
 
 
+
 if __name__ == '__main__':
     main()
+
+print __name__

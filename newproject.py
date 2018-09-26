@@ -9,18 +9,24 @@ import os
 import re
 import shutil
 
+import sys
+
 PATH_SEP = '/'
 
-source_project_path = r'~/iworkspace/didi/newproject/dps_demo'
-target_project_path = r'~/iworkspace/didi/newproject/dps_test'
+# source_project_path = r'~/iworkspace/didi/newproject/dps_demo'
+# target_project_path = r'~/iworkspace/didi/newproject/dps_test'
+#
+# artifact_map = {
+#     "dps-demo": "dps-test",
+#     "_dps_demo": "_dps_test"
+# }
+# package_map = {
+#     "com.didichuxing.dps.demo": "com.didichuxing.dps.test"
+# }
 
-artifact_map = {
-    "dps-demo": "dps-test",
-    "_dps_demo": "_dps_test"
-}
-package_map = {
-    "com.didichuxing.dps.demo": "com.didichuxing.dps.test"
-}
+## 转换映射
+artifact_map = {}
+package_map = {}
 
 excludes = ['*/.git/*', '*/.idea/*', '*/target/*', '*.DS_Store', "*.iml"]
 # includes = ["*/pom.xml", "*/CheckApiService.java"]
@@ -88,14 +94,26 @@ def write_file(target_root, source_root, source_full_path, lines):
     f.close()
 
 
-def test(source_dir):
-    target_dir = clean_path(target_project_path)
-    if os.path.exists(target_dir):
-        shutil.rmtree(target_dir)
-    # os.mkdir(target_dir)
-    source_dir = clean_path(source_dir)
+def build_convert_map(artifact_id, new_package_name):
+    artifact_map['dps-demo'] = artifact_id
+    artifact_map['_dps_demo'] = '_dps' + artifact_id.replace('dps-', '').replace('-', '_')
+    package_map['com.didichuxing.dps.demo'] = new_package_name
+
+
+def create_project(source_project_dir, target_project_dir, new_artifact_id, new_package_name):
+    source_dir = clean_path(source_project_dir)
     if not os.path.exists(source_dir):
         raise IOError("source dir not exists, " + source_dir)
+
+    if not new_artifact_id or not new_package_name:
+        raise RuntimeError("require[new_artifact_id, new_package_name]")
+
+    target_dir = clean_path(target_project_dir)
+    if os.path.exists(target_dir):
+        shutil.rmtree(target_dir)
+
+    build_convert_map(new_artifact_id, new_package_name)
+
     list_dirs = os.walk(source_dir)
     for root, dirs, files in list_dirs:
         for f in files:
@@ -106,4 +124,20 @@ def test(source_dir):
                 write_file(target_dir, source_dir, path, new_lines)
 
 
-test(source_project_path)
+def main():
+    if len(sys.argv) < 3 or '-h' in sys.argv or "--help" in sys.argv:
+        print 'usage: %s <new_project_name> <new_package_name>' % os.path.basename(sys.argv[0])
+        sys.exit(1)
+
+    new_artifact_id = sys.argv[1]
+    source_project = sys.argv[3] if len(sys.argv) == 4 else os.getcwd()
+    target_project = os.path.join(os.path.abspath("../"), sys.argv[1].replace('-', '_'))
+    new_package_name = sys.argv[2]
+
+    print 'source project:%s\ntarget project:%s\nartifact_id:%s\npackage_name:%s' % (
+        source_project, target_project, new_artifact_id, new_package_name)
+    # create_project(source_project, target_project, new_artifact_id, new_package_name)
+
+
+if __name__ == '__main__':
+    main()
