@@ -21,7 +21,7 @@ PATH_SEP = '/'
 #     "_dps_demo": "_dps_test"
 # }
 # package_map = {
-#     "com.didichuxing.dps.demo": "com.didichuxing.dps.test"
+#     "com.xx.dps.demo": "com.xx.dps.test"
 # }
 
 ## 转换映射
@@ -97,7 +97,7 @@ def write_file(target_root, source_root, source_full_path, lines):
 def build_convert_map(artifact_id, new_package_name):
     artifact_map['dps-demo'] = artifact_id
     artifact_map['_dps_demo'] = '_dps' + artifact_id.replace('dps-', '').replace('-', '_')
-    package_map['com.didichuxing.dps.demo'] = new_package_name
+    package_map['com.xx.dps.demo'] = new_package_name
 
 
 def create_project(source_project_dir, target_project_dir, new_artifact_id, new_package_name):

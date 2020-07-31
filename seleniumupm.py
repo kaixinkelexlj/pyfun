@@ -35,7 +35,7 @@ def open_chrome(user_name, password):
         # driver.get("http://me.xiaomikeji.com")
         # driver.add_cookie({"name": "language", "value": "zh_CN", "path": "/"})
         print "selenium login start"
-        target_page = "http://tableau.intra.xiaojukeji.com/#/projects"
+        target_page = "http://xx.com/#/projects"
         driver.get(target_page)
         sleep(10)
         print driver.current_url
