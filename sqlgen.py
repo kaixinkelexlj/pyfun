@@ -15,7 +15,7 @@ sqlFile = r'c:\Users\lujun.xlj\Desktop\channelinit.sql'
 template = '''
 	insert ignore into yw_libra_item(gmt_create,gmt_modified,item_id,item_name,libra_reserve_price,libra_prom_price,libra_item_title,libra_item_picurl,libra_item_manifesto,ts_last_update,gmt_last_update,status,price_source,prom_price_source,status_memo,libra_status,libra_content_id,libra_block_id,libra_application_id,gmt_libra_block_start,gmt_libra_block_end,
 		libra_discount,libra_discount_source)
-	values(now(),now(),'%s','%s-name',100,'%s','test','http://test','test',12345,12345,1,'111','111','memo','2',37120091080,46660421080,999,null,null,
+	values(now(),now(),'%s','%s-name',100,'%s','test','http:#test','test',12345,12345,1,'111','111','memo','2',37120091080,46660421080,999,null,null,
 		0,null);
 '''
 

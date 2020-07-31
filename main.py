@@ -5,7 +5,7 @@ import requests
 
 
 def http_request():
-    r = requests.get("https://www.baidu.com")
+    r = requests.get("https:#www.baidu.com")
     print r.text;
 
 

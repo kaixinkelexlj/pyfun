@@ -15,7 +15,7 @@ chromeDriverPath = r'D:\greens\selenium\chromedriver.exe'
 def baiduindex(keyword):
     driver = webdriver.Chrome(chromeDriverPath, chrome_options=options);
     # try:
-    driver.get("https://index.baidu.com")
+    driver.get("https:#index.baidu.com")
     kw_input = driver.find_element_by_id("schword")
     kw_input.send_keys(keyword)
     commit_btn = driver.find_element_by_id("searchWords")

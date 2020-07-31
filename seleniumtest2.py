@@ -5,16 +5,24 @@ from time import sleep
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 
 options = webdriver.ChromeOptions()
 prefs = {'profile.default_content_settings.popups': 0, 'download.default_directory': '/home/admin/downloads'}
 options.add_experimental_option('prefs', prefs)
 
-chromeDriverPath = r'/Users/xulujun/greens/chromedriver'
+options.add_experimental_option('prefs', prefs)
+options.add_argument("start-maximized")  # open Browser in maximized mode
+options.add_argument("disable-infobars")  # disabling infobars
+options.add_argument("--disable-extensions")  # disabling extensions
+options.add_argument("--disable-gpu")  # applicable to windows os only
+options.add_argument("--disable-dev-shm-usage")  # overcome limited resource problems
+options.add_argument("--no-sandbox")  # Bypass OS security model
+options.add_argument('--headless')
+options.add_argument('--disable-dev-shm-usage')
+options.add_argument('--no-zygote')
+
+chromeDriverPath = r'/Users/didi/selenium/chromedriver'
 
 
 def show_search_result(source):
@@ -24,7 +32,7 @@ def show_search_result(source):
     for el in list:
         link = el.select("a")[0]
         print link.get("href")
-        print "text[%s]" % (link.get_text())
+        # print "text[%s]" % (link)
 
 
 def show_cookie(cookies):
@@ -33,21 +41,17 @@ def show_cookie(cookies):
 
 
 def open_chrome():
-    driver = webdriver.Chrome(chromeDriverPath, chrome_options=options);
-    # webdriver.get("https:#www.baidu.com");
-    # driver.get('http:#sahitest.com/demo/saveAs.htm')
-    # driver.find_element_by_xpath('#a[text()="testsaveas.zip"]').click()
-
-    # driver.get("https:#work.alibaba-inc.com")
+    driver = webdriver.Chrome(chromeDriverPath, chrome_options=options)
 
     try:
-        driver.get("https:#www.baidu.com")
+        driver.get("https://www.baidu.com")
         kw = driver.find_element_by_css_selector("input[id=kw]")
         print kw.get_attribute("id")
         kw.send_keys(u"python selenium 教程")
         kw.send_keys(Keys.RETURN)
         driver.find_element_by_id("su").click()
         sleep(3)
+        print driver.current_url
         show_cookie(driver.get_cookies())
         show_search_result(driver.page_source)
     finally:
@@ -55,21 +59,6 @@ def open_chrome():
         driver.quit()
 
 
-def alineiwai():
-    driver = webdriver.Chrome(chromeDriverPath, chrome_options=options);
-    try:
-        driver.get("https:#work.alibaba-inc.com")
-        WebDriverWait(driver, 20, 0.5).until(
-            expected_conditions.presence_of_element_located((By.CSS_SELECTOR, "div.sweetremind-tip")))
-        show_cookie(driver.get_cookies())
-    finally:
-        driver.close()
-        driver.quit()
-
-
-# open_chrome()
-
-alineiwai()
-
+open_chrome()
 
 # show_search_result('<div class="result"><a href="https:#www.baidu.com">test</a></div>')

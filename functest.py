@@ -220,6 +220,7 @@ def testString():
         print '<null>'
     else:
         print "'' not null"
+    print "FFF".lower()
 
 
 def testSimple():
@@ -228,7 +229,7 @@ def testSimple():
 
 
 def main():
-    testSimple()
+    testString()
 
 
 
