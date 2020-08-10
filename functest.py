@@ -151,6 +151,12 @@ def testCondition():
     exec "print 'hello world'"
     print eval('1+2+3')
 
+    wide = 1
+    new_w = 299 if not wide else 28
+    print(new_w)
+    new_w = 299 if wide > 0 else 28
+    print(new_w)
+
 
 def testDict():
     map1 = dict(name='xlj', age=30)
@@ -227,13 +233,17 @@ def testSimple():
     print os.getcwd()
     print os.path.abspath("../")
 
+def testTry():
+    try:
+        a = 1 / 0
+    except Exception, e:
+        print e
 
 def main():
-    testString()
-
+    testFunctions()
 
 
 if __name__ == '__main__':
-    main()
+    testTry()
 
 print __name__
