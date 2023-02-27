@@ -4,6 +4,7 @@ import copy
 import os
 import re
 import shutil
+import sys
 from string import Template
 
 
@@ -11,18 +12,18 @@ from string import Template
 
 
 def testWalkDir(rootDir):
-    print rootDir
+    print(rootDir)
     list_dirs = os.walk(rootDir)
     for root, dirs, files in list_dirs:
         '''
         for d in dirs:
             print os.path.join(root, d)
-        '''
+        
         for f in files:
             if f.endswith('.jar'):
-                print os.path.join(root, f)
+                print(os.path.join(root, f))
                 shutil.copy(os.path.join(root, f), distDir)
-
+        '''
 
 def testIO():
     # testio.py
@@ -31,36 +32,36 @@ def testIO():
 
 def testLambda():
     g = lambda x: x * x
-    print g(100)
+    print(g(100))
 
 
 def testRe():
-    print [n for n in re.split(r'[,;]', 'xlj;hhq,,,,,,,,,xh') if len(n) > 0];
+    print([n for n in re.split(r'[,;]', 'xlj;hhq,,,,,,,,,xh') if len(n) > 0]);
     m = re.search(r'xlj$xxx', 'this is xlj')
     if m:
-        print "match==>%s" % m.start()
+        print("match==>%s" % m.start())
     else:
-        print 'match <null>'
+        print('match <null>')
     m = re.match(r'(.+)xlj$', 'this is xlj')
     if m:
-        print m.start(), m.group(0), m.group(1)
+        print(m.start(), m.group(0), m.group(1))
     else:
-        print 'match <null>'
+        print('match <null>')
 
     arr = re.split(r"[\s+,;]", "this is xlj,hhq,xh;yeye nainai")
-    print arr
+    print(arr)
 
     arr = re.findall('\w+', 'this is xlj')
-    print arr
+    print(arr)
 
-    print re.sub('xlj$', 'xljlovehhq,xh', 'this is xlj')
+    print(re.sub('xlj$', 'xljlovehhq,xh', 'this is xlj'))
 
 
 def testModule():
-    print [n for n in dir(sys) if not n.startswith('_')]
-    print copy.__all__
-    print copy.__doc__
-    print help(copy.copy)
+    print ([n for n in dir(sys) if not n.startswith('_')])
+    print (copy.__all__)
+    print (copy.__doc__)
+    print (help(copy.copy))
 
 
 def testYield():
@@ -68,11 +69,11 @@ def testYield():
         try:
             try:
                 list + ''
-            except (TypeError), e:
+            except (TypeError) as e:
                 # print e
-                print type(list)
+                print(type(list))
             else:
-                print 'else TypeError'
+                print('else TypeError')
                 raise TypeError
             for sub in list:
                 for item in flattern(sub):
@@ -81,7 +82,7 @@ def testYield():
             yield list
 
     for num in flattern([1, 2, 3, [4, 5, [10]]]):
-        print num
+        print(num)
 
 
 def testClass():
@@ -93,7 +94,7 @@ def testClass():
             self.song = 'guava'
 
         def sing(self):
-            print self.song
+            print(self.song)
 
     class HuangLi(Bird):
         mySong = None
@@ -103,7 +104,7 @@ def testClass():
             self.mySong = 'huangli'
 
         def sing(self):
-            print self.mySong, self.song
+            print(self.mySong, self.song)
 
     Bird().sing()
     HuangLi().sing()
@@ -112,29 +113,28 @@ def testClass():
 def testFunctions():
     def fa(x, y, *other):
         print (x, y)
-        print other
+        print(other)
 
     def fa(x, y, *other, **map):
         print (x, y)
-        print other
-        print map
+        print(other)
+        print(map)
 
     fa(1, 2, 4, 5, 6, 7, name='xlj', age=30)
 
-
 def testCondition():
     a = b = 100
-    print a is b
+    print(a is b)
 
     if a is b:
-        print 'a is b'
+        print('a is b')
     elif a is not b:
-        print 'ok'
+        print('ok')
     else:
-        print 'fuck'
+        print('fuck')
 
-    print a is not b
-    print a in [100, 200, 300]
+    print(a is not b)
+    print(a in [100, 200, 300])
 
     '''
     c = ''
@@ -143,13 +143,13 @@ def testCondition():
     '''
 
     for i in range(10):
-        print i
+        print(i)
 
     arr = [x for x in range(10)]
-    print arr
+    print (arr)
 
-    exec "print 'hello world'"
-    print eval('1+2+3')
+    exec ("print 'hello world'")
+    print (eval('1+2+3'))
 
     wide = 1
     new_w = 299 if not wide else 28
@@ -160,90 +160,90 @@ def testCondition():
 
 def testDict():
     map1 = dict(name='xlj', age=30)
-    print map1
+    print(map1)
     map2 = dict([('name', 'xlj'), ('age', 30)])
-    print map2
-    print map1 == map2
+    print(map2)
+    print(map1 == map2)
 
     map = {}.fromkeys(['name', 'unit'])
     map.update({"xxx": "1212121"})
-    print map
-    print map.setdefault('test', 'N/A')
+    print(map)
+    print(map.setdefault('test', 'N/A'))
     map['test'] = 'ok'
-    print map.setdefault('test', 'N/A')
-    print map.has_key('test')
-    print map.get('test')
-    print map['test']
-    print "map.get('12345')==>%s" % map.get('12345')
+    print(map.setdefault('test', 'N/A'))
+    print(map.has_key('test'))
+    print(map.get('test'))
+    print(map['test'])
+    print("map.get('12345')==>%s" % map.get('12345'))
     try:
-        print "map.get('12345')==>%s" % map['12345']
+        print("map.get('12345')==>%s" % map['12345'])
     except:
-        print "error==>map['12345']"
-    print map.items()
-    print map.iteritems()
-    print map.values()
-    print map.itervalues()
+        print("error==>map['12345']")
+    print(map.items())
+    print(map.iteritems())
+    print(map.values())
+    print(map.itervalues())
     for key, val in map.iteritems():
-        print 'key:%s,val:%s' % (key, val)
-    print '=========================='
+        print('key:%s,val:%s' % (key, val))
+    print('==========================')
     for key in map:
-        print 'key:%s,val:%s' % (key, map[key])
+        print('key:%s,val:%s' % (key, map[key]))
 
     del map['unit']
-    print map.items()
-    print len(map)
+    print(map.items())
+    print(len(map))
 
 
 def testArray():
     a = [1]
     a[1:] = [2, 3, 4, 5]
-    print a
+    print(a)
     a.append([100])
     a.extend([200])
-    print a
-    print min(a), max(a), len(a), a.count(1)
+    print(a)
+    print(min(a), max(a), len(a), a.count(1))
     a.insert(0, 999)
-    print a
+    print(a)
     a.reverse()
-    print sorted(a)
-    print a
+    print(sorted(a))
+    print(a)
     a.sort()
-    print a;
-    print a.pop(len(a) - 1)
+    print(a)
+    print(a.pop(len(a) - 1))
     a.sort(lambda x, y: y - x);
-    print a
+    print(a)
 
 
 def testString():
-    print 'this is %s %s' % ('hello', 'world')
-    print Template('$x is nidaye==>$x,$y').substitute(x='xlj', y='xs')
-    print 'this is xlj'.find('xlj')
-    print 'this is xlj'.find('hhq')
-    print ','.join(['1', '2', '3', '4', '5'])
-    print '       this is xlj      '.strip()
-    print len('12234232')
+    print('this is %s %s' % ('hello', 'world'))
+    print(Template('$x is nidaye==>$x,$y').substitute(x='xlj', y='xs'))
+    print('this is xlj'.find('xlj'))
+    print('this is xlj'.find('hhq'))
+    print(','.join(['1', '2', '3', '4', '5']))
+    print('       this is xlj      '.strip())
+    print(len('12234232'))
     if (bool('')):
-        print '<null>'
+        print('<null>')
     else:
-        print "'' not null"
-    print "FFF".lower()
+        print("'' not null")
+    print("FFF".lower())
 
 
 def testSimple():
-    print os.getcwd()
-    print os.path.abspath("../")
+    print(os.getcwd())
+    print(os.path.abspath("../"))
 
 def testTry():
     try:
         a = 1 / 0
-    except Exception, e:
-        print e
+    except Exception as e:
+        print(e)
 
 def main():
-    testFunctions()
+    testRe()
 
 
 if __name__ == '__main__':
-    testTry()
+    main()
 
-print __name__
+print(__name__)
