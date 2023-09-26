@@ -25,10 +25,10 @@ authToken: str = DscAccessTokenProvider.get_token(principal, secretKey) # "根�
 queryId: str = "CDP_" + str(uuid.uuid1()) # "自定义queryId" 自定义唯一的queryId 例如"业务标记"_"UUID"
 
 jobUserParams: dict = {}
-jobUserParams[EmProfile.KUAISHOU_BIGDATA_JOB_AUTHC_PRINCIPAL.value] = principal
-jobUserParams[EmProfile.KUAISHOU_BIGDATA_JOB_AUTHC_TYPE.value] = authType
-jobUserParams[EmProfile.KUAISHOU_BIGDATA_JOB_AUTHC_TOKEN.value] = authToken
-jobUserParams[EmProfile.KUAISHOU_BIGDATA_JOB_CUSTOM_QUERY_ID.value] = queryId
+jobUserParams[EmProfile.xxxxxxxxxx_BIGDATA_JOB_AUTHC_PRINCIPAL.value] = principal
+jobUserParams[EmProfile.xxxxxxxxxx_BIGDATA_JOB_AUTHC_TYPE.value] = authType
+jobUserParams[EmProfile.xxxxxxxxxx_BIGDATA_JOB_AUTHC_TOKEN.value] = authToken
+jobUserParams[EmProfile.xxxxxxxxxx_BIGDATA_JOB_CUSTOM_QUERY_ID.value] = queryId
 
 
 def query_hive(query):
