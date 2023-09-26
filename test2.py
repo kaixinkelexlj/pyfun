@@ -12,14 +12,14 @@ from themisjobsdk.enums.enums import EmProfile # 权限中心相关参数
 from dsc.client import DscAccessTokenProvider
 
 # 定义变量
-APP_KEY_PROD: str = "8E8B8A22620A4024844ECD7DC5305336"  # appKey
-APP_SECRET_PROD: str = "0C6D81A471594FE485A0301C665C4FEE"  # appSecret
+APP_KEY_PROD: str = ""  # appKey
+APP_SECRET_PROD: str = ""  # appSecret
 GROUP_ID: int = 882  # 青藤项目id，需要使用自己项目id
-USER: str = "liuhongliang"  # 需要使用自己的邮箱前缀
+USER: str = ""  # 需要使用自己的邮箱前缀
 
-principal: str = "ad_ms/project@kuaishou.com" # "权限中心申请的principal"
-authType: str = "PROJECT" # "权限中心的鉴权类型：USER、PROJECT、PROXY"
-secretKey: str = "a7053b3f266e4feeb78cf2eeecc71f72" # "权限中心申请的secretKey"
+principal: str = "" # "权限中心申请的principal"
+authType: str = "" # "权限中心的鉴权类型：USER、PROJECT、PROXY"
+secretKey: str = "" # "权限中心申请的secretKey"
 authToken: str = DscAccessTokenProvider.get_token(principal, secretKey) # "根据权限中心SDK生成的token"
 # authToken: str = DscAccessTokenProvider.get_token_with_time(principal, secretKey, expireMilliSecs)
 queryId: str = "CDP_" + str(uuid.uuid1()) # "自定义queryId" 自定义唯一的queryId 例如"业务标记"_"UUID"
