@@ -237,10 +237,10 @@ def testTry():
     try:
         a = 1 / 0
     except Exception as e:
-        print(e)
+        raise e
 
 def main():
-    testRe()
+    testDict()
 
 
 if __name__ == '__main__':

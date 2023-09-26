@@ -80,7 +80,7 @@ def write_file(target_root, source_root, source_full_path, lines):
         path_pattern = package_to_path(key)
         if target_full_path.find(path_pattern) != -1:
             target_full_path = target_full_path.replace(path_pattern, package_to_path(val))
-    print target_full_path
+    print(target_full_path)
     target_dir = os.path.dirname(target_full_path);
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
@@ -108,7 +108,7 @@ def create_project(source_project_dir, target_project_dir, new_artifact_id, new_
         for f in files:
             path = os.path.join(root, f)
             if accept(path):
-                print path
+                print(path)
                 if fnmatch.fnmatch(path.lower(), read_me_md):
                   new_lines = ["### " + new_artifact_id]
                 else:
@@ -117,7 +117,7 @@ def create_project(source_project_dir, target_project_dir, new_artifact_id, new_
 
 def main():
     if len(sys.argv) < 3 or '-h' in sys.argv or "--help" in sys.argv:
-        print 'usage: %s <new_project_name> <new_package_name>' % os.path.basename(sys.argv[0])
+        print('usage: %s <new_project_name> <new_package_name>' % os.path.basename(sys.argv[0]))
         sys.exit(1)
 
     new_artifact_id = sys.argv[1]
@@ -125,8 +125,8 @@ def main():
     target_project = os.path.join(os.path.abspath("../"), sys.argv[1])
     new_package_name = sys.argv[2]
 
-    print 'source project:%s\ntarget project:%s\nartifact_id:%s\npackage_name:%s' % (
-        source_project, target_project, new_artifact_id, new_package_name)
+    print('source project:%s\ntarget project:%s\nartifact_id:%s\npackage_name:%s' % (
+        source_project, target_project, new_artifact_id, new_package_name))
     create_project(source_project, target_project, new_artifact_id, new_package_name)
 
 if __name__ == '__main__':
