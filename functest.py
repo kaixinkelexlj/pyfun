@@ -36,6 +36,10 @@ def testLambda():
 
 
 def testRe():
+
+    val = re.sub('vo(?=\s|\()','#1212#','BrandVO brandVo = new BrandVo() toVo(xxxs)',flags = re.IGNORECASE)
+    print(val)
+
     print([n for n in re.split(r'[,;]', 'xlj;hhq,,,,,,,,,xh') if len(n) > 0]);
     m = re.search(r'xlj$xxx', 'this is xlj')
     if m:
@@ -240,7 +244,7 @@ def testTry():
         raise e
 
 def main():
-    testDict()
+    testRe()
 
 
 if __name__ == '__main__':

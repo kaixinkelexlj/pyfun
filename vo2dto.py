@@ -55,6 +55,8 @@ def process_line(line):
     new_line = line
     for val in vo_map.values():
         new_line = new_line.replace(val['vo'], val['dto'])
+    new_line = re.sub('(VO|Vo)(?=[^\w])', 'DTO', new_line)
+    new_line = re.sub('vo(?=[^\w])', 'dto', new_line)
     return new_line
 
 
